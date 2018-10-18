@@ -1,9 +1,16 @@
 <meta charset="UTF-8">
 <html>
 	<head>
-		<h1>"Olá"</h1>
+		<script>
+			var tela = document.querySelector("canvas");
+			var pincel = tela.getContext("2d");
+			
+			pincel.fillStyle = "lightgray";
+			pincel.fillRect(0,0,600,400);
+		</script>
 	</head>
 	<body>
-		<canvas width="600" height="400" color="blue"></canvas>
+		<h1>Olá</h1>
+		<canvas width="600" height="400"></canvas
 	</body>
 </html>
