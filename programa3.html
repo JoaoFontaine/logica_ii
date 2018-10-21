@@ -1,0 +1,50 @@
+<meta charset="UTF-8">
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<canvas width="600" height="400"></canvas>
+		<script>
+			var tela = document.querySelector("canvas");
+			var pincel = tela.getContext("2d");
+			var cores = ["blue", "red", "green"];
+			var iteracao = 0;			
+			var raio = 10, raio_min = 10, raio_max = 50;
+			var incremento = 5;
+			
+			function desenha_circulo(evento){
+				var x = evento.pageX - tela.offsetLeft;
+				var y = evento.pageY - tela.offsetTop;
+				
+				if(evento.shiftKey && raio<raio_max){
+					raio+= incremento;
+				}
+				
+				if(evento.altKey && raio>raio_min){
+					raio-= incremento;
+				}
+				
+				pincel.fillStyle = cores[iteracao];
+				pincel.beginPath();
+				pincel.arc(x,y,raio,0,2*3.14)
+				pincel.fill();
+			}
+			
+			function troca_cor(evento){
+				iteracao++;
+				if(iteracao>=cores.length){
+					iteracao = 0;
+				}
+				return false;
+			}
+			
+			pincel.fillStyle = "grey";
+			pincel.fillRect(0,0,600,400);
+			
+			tela.onclick = desenha_circulo;
+			tela.oncontextmenu = troca_cor;
+			
+		</script>
+	</body>
+</html>	
