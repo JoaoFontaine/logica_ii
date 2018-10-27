@@ -1,0 +1,71 @@
+<meta charset="UTF-8">
+<html>
+	<head>
+	</head>
+	<body>
+		<canvas width="600" height="400"></canvas>
+		<script>
+			
+			var tela = document.querySelector("canvas");
+			var pincel = tela.getContext("2d");
+			var x = 30, y = 30, raio = 20, raioMin = 20, raioMax = 30;
+			var incrementoX = 2, incrementoY = 10, incrementoR = 1;
+			
+			pincel.fillStyle = "gray";
+			pincel.fillRect(0,0,600,400);
+			
+			function desenhaCirculo (x, y, raio){
+				pincel.fillStyle = "blue";
+				pincel.beginPath();
+				pincel.arc(x, y, raio, 0, 2*Math.PI);
+				pincel.fill();
+			}
+			
+			function limpaTela(){pincel.clearRect(0, 0, 600, 400)};
+			/*
+			function atualizaPosicoes(){
+				x+=incrementoX;
+				if( x >= 600 - raioMax || x <= raioMax){
+					incrementoX *= -1;
+					y += incrementoY;
+					if( y >= 400 - raioMax || y <= raioMax){
+						incrementoY *= -1;
+					}
+				}
+			}
+			
+			function atualizaTela(){
+				limpaTela();
+				desenhaCirculo(x, y, raio);
+			}
+			
+			function mudaRaio(){
+				raio+=incrementoR;
+				if ( raio < raioMin || raio > raioMax ){
+					incrementoR *= -1;
+				}
+			}*/
+			
+			function atualizaTela(){
+				limpaTela();
+				desenhaCirculo(x, y, raio);
+				x+=(incrementoX*15);
+				if( x >= 600 - raioMax || x <= raioMax){
+					incrementoX *= -1;
+					y += incrementoY;
+					if( y >= 400 - raioMax || y <= raioMax){
+						incrementoY *= -1;
+					}
+				}
+			}
+			
+			console.log(Date.now());
+			
+			//setInterval(atualizaTela, 33);
+			//setInterval(atualizaPosicoes, 1)
+			//setInterval(mudaRaio, 20);
+			setInterval(atualizaTela, 60);
+			
+		</script>
+	</body>
+</html>	
